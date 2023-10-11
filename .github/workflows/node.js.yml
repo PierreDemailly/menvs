@@ -1,0 +1,31 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        node-version: [18, 20]
+        os: [ubuntu-latest]
+      fail-fast: false
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@8ca2b8b2ece13480cda6dacd3511b49857a23c09 # v2.5.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm i
+      - name: Run tests
+        run: npm run test

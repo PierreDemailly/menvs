@@ -1,0 +1,37 @@
+{
+  "name": "menvs",
+  "version": "0.0.1",
+  "description": "Manage .env across projects",
+  "scripts": {
+    "test": "node ./test/run.js",
+    "coverage": "c8 --all -r html node ./test/run.js",
+    "lint": "eslint ./**/**.js",
+    "pkg:ok": "npx pkg-ok"
+  },
+  "main": "./bin/menvs.mjs",
+  "bin": {
+    "menvs": "./bin/menvs.mjs"
+  },
+  "keywords": [],
+  "author": "PierreDemailly <pierredemailly.pro@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "bin",
+    "src"
+  ],
+  "type": "module",
+  "devDependencies": {
+    "@nodesecure/eslint-config": "^1.8.0",
+    "c8": "^8.0.1",
+    "eslint": "^8.51.0",
+    "glob": "^10.3.10",
+    "pkg-ok": "^3.0.0",
+    "strip-ansi": "^7.1.0"
+  },
+  "dependencies": {
+    "@nodesecure/fs-walk": "^1.0.0",
+    "@topcli/prompts": "^1.4.0",
+    "kleur": "^4.1.5",
+    "meow": "^12.1.1"
+  }
+}
