@@ -11,6 +11,7 @@ import { PromptAgent } from "@topcli/prompts";
 // Import Internal Dependencies
 import { update } from "../src/index.js";
 import * as utils from "../src/utils.js";
+import { MENVS_CONFIGS_PATH } from "../src/constants.js";
 
 // CONSTANTS
 const kPromptAgent = PromptAgent.agent();
@@ -20,6 +21,10 @@ describe("Updating config", () => {
   let currentEnv = null;
 
   before(async() => {
+    if (!fs.existsSync(MENVS_CONFIGS_PATH)) {
+      fs.mkdirSync(MENVS_CONFIGS_PATH);
+    }
+
     try {
       currentEnv = fs.readFileSync(".env", { encoding: "utf-8" });
     }
@@ -57,6 +62,8 @@ describe("Updating config", () => {
       ["key", "value"],
       "PORT",
       "8080",
+      false,
+      false,
       [process.cwd(), kTmpDir]
     ]);
     await update();
@@ -82,5 +89,40 @@ describe("Updating config", () => {
     ];
     assert.equal(tmpEnv, "PORT=8080");
     assert.equal(cwdEnv, "PORT=8080");
+  });
+
+  it("should remove variable and add new one", async() => {
+    fs.writeFileSync(utils.configEnvPath("foo"), "DUMMY_VAR=foo");
+    fs.writeFileSync(utils.configJSONPath("foo"), JSON.stringify({
+      config: [
+        {
+          key: "DUMMY_VAR",
+          value: "foo"
+        }
+      ],
+      usedBy: [process.cwd(), kTmpDir]
+    }, null, 2));
+    fs.writeFileSync(path.join(os.tmpdir(), ".env"), "DUMMY_VAR=foo");
+    fs.writeFileSync(".env", "DUMMY_VAR=foo");
+
+    kPromptAgent.nextAnswer([
+      "foo",
+      [],
+      true,
+      [{ key: "DUMMY_VAR", value: "foo" }],
+      true,
+      "SERVER_PORT",
+      "8080",
+      false,
+      [process.cwd(), kTmpDir]
+    ]);
+    await update();
+
+    const [tmpEnv, cwdEnv] = [
+      fs.readFileSync(path.join(os.tmpdir(), ".env"), "utf-8"),
+      fs.readFileSync(".env", "utf-8")
+    ];
+    assert.equal(tmpEnv, "SERVER_PORT=8080");
+    assert.equal(cwdEnv, "SERVER_PORT=8080");
   });
 });

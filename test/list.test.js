@@ -1,6 +1,6 @@
 // Import Node.js Dependencies
 import assert from "node:assert";
-import { describe, it } from "node:test";
+import { describe, before, it } from "node:test";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
@@ -12,12 +12,18 @@ import stripAnsi from "strip-ansi";
 // Import Internal Dependencies
 import { list } from "../src/index.js";
 import * as utils from "../src/utils.js";
-import { MENVS_PATH } from "../src/constants.js";
+import { MENVS_CONFIGS_PATH } from "../src/constants.js";
 
 // CONSTANTS
 const kPromptAgent = PromptAgent.agent();
 
 describe("Listing env", () => {
+  before(async() => {
+    if (!fs.existsSync(MENVS_CONFIGS_PATH)) {
+      fs.mkdirSync(MENVS_CONFIGS_PATH);
+    }
+  });
+
   const logs = [];
   console.log = (str) => {
     logs.push(stripAnsi(str));
@@ -25,8 +31,8 @@ describe("Listing env", () => {
   };
 
   it("should throw if there is no config", async() => {
-    for (const file of fs.readdirSync(MENVS_PATH)) {
-      fs.rmSync(path.join(MENVS_PATH, file), { force: true });
+    for (const file of fs.readdirSync(MENVS_CONFIGS_PATH)) {
+      fs.rmSync(path.join(MENVS_CONFIGS_PATH, file), { force: true });
     }
 
     await list();

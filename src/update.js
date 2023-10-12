@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 
 // Import Third-party Dependencies
-import { question, required, multiselect, select } from "@topcli/prompts";
+import { question, confirm, required, multiselect, select } from "@topcli/prompts";
 import { green } from "kleur/colors";
 
 // Import Third-party Dependencies
@@ -30,12 +30,6 @@ export async function update() {
       };
     })
   });
-
-  if (keysToUpdate.length === 0) {
-    console.log("No env to update");
-
-    return;
-  }
 
   const formattedConfig = structuredClone(config);
   for (const envConfig of keysToUpdate) {
@@ -66,6 +60,38 @@ export async function update() {
         conf.value = await question("Choose the new value", { validators: [required()] });
       }
     }
+  }
+
+  const removeEnv = await confirm("Do you wanna remove variable ?");
+  if (removeEnv) {
+    const envToRemove = await multiselect("Choose the variables to remove", {
+      choices: formattedConfig.map((envConfig) => {
+        return {
+          value: envConfig,
+          label: `${envConfig.key} (${envConfig.value})`
+        };
+      })
+    });
+
+    for (const envConfig of envToRemove) {
+      formattedConfig.splice(formattedConfig.indexOf(envConfig), 1);
+    }
+  }
+
+  while (true) {
+    const addNewEnv = await confirm("Do you wanna add a new variable ?");
+    if (!addNewEnv) {
+      break;
+    }
+
+    const newEnvKey = await question("Choose the new key", { validators: [required()] });
+    const newEnvValue = await question("Choose the new value", { validators: [required()] });
+
+    formattedConfig.push({
+      key: newEnvKey,
+      value: newEnvValue,
+      isSecret: utils.isKeySecret(newEnvKey)
+    });
   }
 
   fs.writeFileSync(

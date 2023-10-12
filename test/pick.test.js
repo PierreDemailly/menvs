@@ -10,6 +10,7 @@ import { PromptAgent } from "@topcli/prompts";
 // Import Internal Dependencies
 import { pick } from "../src/index.js";
 import * as utils from "../src/utils.js";
+import { MENVS_CONFIGS_PATH } from "../src/constants.js";
 
 // CONSTANTS
 const kPromptAgent = PromptAgent.agent();
@@ -18,6 +19,10 @@ describe("Picking .env", () => {
   let currentEnv = null;
 
   before(async() => {
+    if (!fs.existsSync(MENVS_CONFIGS_PATH)) {
+      fs.mkdirSync(MENVS_CONFIGS_PATH);
+    }
+
     try {
       currentEnv = fs.readFileSync(".env", { encoding: "utf-8" });
     }

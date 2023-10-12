@@ -10,12 +10,17 @@ import { PromptAgent } from "@topcli/prompts";
 // Import Internal Dependencies
 import { save } from "../src/index.js";
 import * as utils from "../src/utils.js";
+import { MENVS_CONFIGS_PATH } from "../src/constants.js";
 
 // CONSTANTS
 const kPromptAgent = PromptAgent.agent();
 
 describe("Saving .env", () => {
   before(async() => {
+    if (!fs.existsSync(MENVS_CONFIGS_PATH)) {
+      fs.mkdirSync(MENVS_CONFIGS_PATH);
+    }
+
     fs.rmSync(utils.configEnvPath("foo"), { force: true });
     fs.rmSync(utils.configJSONPath("foo"), { force: true });
   });
