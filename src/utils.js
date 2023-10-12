@@ -23,3 +23,9 @@ export function configJSONPath(configName) {
 export function configEnvPath(configName) {
   return path.join(MENVS_CONFIGS_PATH, `${configName}.env`);
 }
+
+export function isKeySecret(key) {
+  const toLowerCase = key.toLowerCase();
+
+  return toLowerCase.includes("secret") || toLowerCase.includes("password");
+}

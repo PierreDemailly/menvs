@@ -12,8 +12,7 @@ import stripAnsi from "strip-ansi";
 // Import Internal Dependencies
 import { show } from "../src/index.js";
 import * as utils from "../src/utils.js";
-import { MENVS_PATH } from "../src/constants.js";
-import { setTimeout } from "node:timers/promises";
+import { MENVS_CONFIGS_PATH } from "../src/constants.js";
 
 // CONSTANTS
 const kPromptAgent = PromptAgent.agent();
@@ -26,8 +25,8 @@ describe("Showing env", () => {
   };
 
   it("should throw if there is no config", async() => {
-    for (const file of fs.readdirSync(MENVS_PATH)) {
-      fs.rmSync(path.join(MENVS_PATH, file), { force: true });
+    for (const file of fs.readdirSync(MENVS_CONFIGS_PATH)) {
+      fs.rmSync(path.join(MENVS_CONFIGS_PATH, file), { force: true });
     }
 
     await show();

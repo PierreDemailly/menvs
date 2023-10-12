@@ -35,7 +35,7 @@ $ cd path/to/other/project
 $ menvs pick
 ```
 
-<img src="./public/usage-screenshot.png" width="680" alt="usage screenshot">
+<img src="./public/usage-screenshot.png" width="500" alt="usage screenshot">
 
 ## Features
 

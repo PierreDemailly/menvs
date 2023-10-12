@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Import Node.js Dependencies
-import fs, { existsSync } from "node:fs";
+import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
@@ -12,11 +12,11 @@ import { multiselect, question } from "@topcli/prompts";
 
 // Import Internal Dependencies
 import * as commandHandlers from "../src/index.js";
-import { MENV_PATH } from "../src/constants.js";
+import { MENVS_CONFIGS_PATH } from "../src/constants.js";
 
-if (!existsSync(MENV_PATH)) {
+if (!fs.existsSync(MENVS_CONFIGS_PATH)) {
   try {
-    fs.mkdirSync(MENV_PATH);
+    fs.mkdirSync(MENVS_CONFIGS_PATH);
   }
   catch (error) {
     throw new Error("Could not create .menvs directory", {

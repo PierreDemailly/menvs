@@ -20,18 +20,12 @@ export async function save() {
     }
 
     const [key, ...values] = line.split("=");
-    const keyLowerCase = key.toLowerCase();
     const value = values.join("=");
-
-    let isSecret = false;
-    if (keyLowerCase.includes("secret") || keyLowerCase.includes("password")) {
-      isSecret = true;
-    }
 
     return {
       key,
       value,
-      isSecret
+      isSecret: utils.isKeySecret(key)
     };
   });
 
