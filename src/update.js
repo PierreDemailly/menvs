@@ -57,7 +57,10 @@ export async function update() {
         conf.key = await question("Choose the new key", { validators: [required()] });
       }
       else if (scope === "value") {
-        conf.value = await question("Choose the new value", { validators: [required()] });
+        conf.value = await question("Choose the new value", {
+          validators: [required()],
+          secure: utils.isKeySecret(envConfig.key)
+        });
       }
     }
   }
@@ -85,7 +88,10 @@ export async function update() {
     }
 
     const newEnvKey = await question("Choose the new key", { validators: [required()] });
-    const newEnvValue = await question("Choose the new value", { validators: [required()] });
+    const newEnvValue = await question("Choose the new value", {
+      validators: [required()],
+      secure: utils.isKeySecret(newEnvKey)
+    });
 
     formattedConfig.push({
       key: newEnvKey,

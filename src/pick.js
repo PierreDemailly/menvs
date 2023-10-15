@@ -36,7 +36,10 @@ export async function pick() {
   let env = fs.readFileSync(utils.configEnvPath(configName), { encoding: "utf-8" });
 
   for (const dynamicEnv of dynamicEnvs) {
-    const value = await question(`Choose value for env ${dynamicEnv.key}${dynamicEnv.desc ? ` (${dynamicEnv.desc})` : ""}`);
+    const value = await question(`Choose value for env ${dynamicEnv.key}${dynamicEnv.desc ? ` (${dynamicEnv.desc})` : ""}`, {
+      validators: [required()],
+      secure: utils.isKeySecret(dynamicEnv.key)
+    });
     env = env.replace(`${dynamicEnv.key}=${dynamicEnv.value}`, `${dynamicEnv.key}=${value}`);
   }
 

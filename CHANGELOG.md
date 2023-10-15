@@ -13,4 +13,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 - List available configurations
 - Delete a configuration
 - Show configuration key-values
+- Secure secret variable prompts
 - Update configuration (key / value )
