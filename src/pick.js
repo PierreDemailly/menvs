@@ -2,7 +2,7 @@
 import fs from "node:fs";
 
 // Import Third-party Dependencies
-import { question, confirm, select } from "@topcli/prompts";
+import { question, confirm, select, required } from "@topcli/prompts";
 import { green } from "kleur/colors";
 
 // Import Internal Dependencies
