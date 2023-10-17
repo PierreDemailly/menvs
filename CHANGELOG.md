@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [0.0.1] - 2023-10-18
+
 ### Added
 
 - Save a new configuration from an existing `.env`
