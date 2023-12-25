@@ -32,6 +32,6 @@
     "@nodesecure/fs-walk": "^1.0.0",
     "@topcli/prompts": "^1.5.0",
     "kleur": "^4.1.5",
-    "meow": "^12.1.1"
+    "meow": "^13.0.0"
   }
 }
