@@ -22,7 +22,7 @@
   "type": "module",
   "devDependencies": {
     "@nodesecure/eslint-config": "^1.8.0",
-    "c8": "^8.0.1",
+    "c8": "^9.0.0",
     "eslint": "^8.51.0",
     "glob": "^10.3.10",
     "pkg-ok": "^3.0.0",
