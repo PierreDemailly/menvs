@@ -3,10 +3,10 @@ import fs from "node:fs";
 
 // Import Third-party Dependencies
 import { question, multiselect } from "@topcli/prompts";
+import { green } from "kleur/colors";
 
 // Import Internal Dependencies
 import * as utils from "./utils.js";
-import { green } from "kleur/colors";
 
 export async function save() {
   const dotenv = fs.readFileSync(".env", { encoding: "utf-8" });

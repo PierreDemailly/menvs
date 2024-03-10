@@ -11,7 +11,7 @@ import * as utils from "./utils.js";
 export async function pick() {
   // verify a .env does not already exists
   try {
-    const dotenv = fs.readFileSync(".env", { encoding: "utf-8" });
+    fs.readFileSync(".env");
     const force = await confirm("A .env already exists, remove its content ?", { initial: false });
     if (!force) {
       return;
