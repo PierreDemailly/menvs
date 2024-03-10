@@ -5,8 +5,7 @@
   "scripts": {
     "test": "node --test --test-concurrency 1",
     "coverage": "c8 --all -r html node ./test/run.js",
-    "lint": "eslint ./**/**.js",
-    "pkg:ok": "npx pkg-ok"
+    "lint": "eslint ./**/**.js"
   },
   "main": "./bin/menvs.mjs",
   "bin": {
@@ -21,17 +20,14 @@
   ],
   "type": "module",
   "devDependencies": {
-    "@nodesecure/eslint-config": "^1.8.0",
-    "c8": "^8.0.1",
-    "eslint": "^8.51.0",
-    "glob": "^10.3.10",
-    "pkg-ok": "^3.0.0",
+    "@nodesecure/eslint-config": "^1.9.0",
+    "c8": "^9.1.0",
     "strip-ansi": "^7.1.0"
   },
   "dependencies": {
     "@nodesecure/fs-walk": "^1.0.0",
-    "@topcli/prompts": "^1.5.0",
+    "@topcli/prompts": "^1.9.0",
     "kleur": "^4.1.5",
-    "meow": "^12.1.1"
+    "meow": "^13.2.0"
   }
 }
