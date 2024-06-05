@@ -25,8 +25,8 @@
     "strip-ansi": "^7.1.0"
   },
   "dependencies": {
-    "@nodesecure/fs-walk": "^1.0.0",
-    "@topcli/prompts": "^1.9.0",
+    "@nodesecure/fs-walk": "^2.0.0",
+    "@topcli/prompts": "^1.10.1",
     "kleur": "^4.1.5",
     "meow": "^13.2.0"
   }

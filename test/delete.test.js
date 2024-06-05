@@ -32,7 +32,7 @@ describe("Deleting config", () => {
       ]
     }, null, 2));
 
-    kPromptAgent.nextAnswer(new Set(["delete-foo"]));
+    kPromptAgent.nextAnswer("delete-foo");
 
     await del();
 
