@@ -1,6 +1,5 @@
 // Import Node.js Dependencies
 import path from "node:path";
-import os from "node:os";
 
 // Import Third-party Dependencies
 import { walkSync } from "@nodesecure/fs-walk";

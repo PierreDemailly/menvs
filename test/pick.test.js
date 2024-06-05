@@ -2,7 +2,6 @@
 import assert from "node:assert";
 import { before, after, describe, it } from "node:test";
 import fs from "node:fs";
-import path from "node:path";
 
 // Import Third-party Dependencies
 import { PromptAgent } from "@topcli/prompts";

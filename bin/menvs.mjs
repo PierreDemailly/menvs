@@ -2,13 +2,9 @@
 
 // Import Node.js Dependencies
 import fs from "node:fs";
-import os from "node:os";
-import path from "node:path";
 
 // Import Third-party Dependencies
 import meow from "meow";
-import { magenta, red, bold } from "kleur/colors";
-import { multiselect, question } from "@topcli/prompts";
 
 // Import Internal Dependencies
 import * as commandHandlers from "../src/index.js";
@@ -68,7 +64,7 @@ switch (input[0]) {
   }
   case "list":
   case "l": {
-    await commandHandlers.list();
+    commandHandlers.list();
     break;
   }
   case "delete":

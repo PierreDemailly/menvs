@@ -2,7 +2,6 @@
 import assert from "node:assert";
 import { before, describe, it } from "node:test";
 import fs from "node:fs";
-import path from "node:path";
 
 // Import Third-party Dependencies
 import { PromptAgent } from "@topcli/prompts";
@@ -33,7 +32,7 @@ describe("Deleting config", () => {
       ]
     }, null, 2));
 
-    kPromptAgent.nextAnswer(new Set(["delete-foo"]));
+    kPromptAgent.nextAnswer("delete-foo");
 
     await del();
 

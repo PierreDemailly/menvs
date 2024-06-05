@@ -6,16 +6,12 @@ import path from "node:path";
 import os from "node:os";
 
 // Import Third-party Dependencies
-import { PromptAgent } from "@topcli/prompts";
 import stripAnsi from "strip-ansi";
 
 // Import Internal Dependencies
 import { list } from "../src/index.js";
 import * as utils from "../src/utils.js";
 import { MENVS_CONFIGS_PATH } from "../src/constants.js";
-
-// CONSTANTS
-const kPromptAgent = PromptAgent.agent();
 
 describe("Listing env", () => {
   before(async() => {
