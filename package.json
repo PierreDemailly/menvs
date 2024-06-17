@@ -21,7 +21,7 @@
   "type": "module",
   "devDependencies": {
     "@nodesecure/eslint-config": "^1.9.0",
-    "c8": "^9.1.0",
+    "c8": "^10.1.2",
     "strip-ansi": "^7.1.0"
   },
   "dependencies": {
