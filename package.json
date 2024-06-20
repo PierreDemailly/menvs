@@ -4,6 +4,7 @@
   "description": "Manage .env across projects",
   "scripts": {
     "test": "node --test --test-concurrency 1",
+    "test:ci": "node --test --test-reporter node-test-github-reporter --test-concurrency 1",
     "coverage": "c8 --all -r html node ./test/run.js",
     "lint": "eslint ./**/**.js"
   },
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@nodesecure/eslint-config": "^1.9.0",
     "c8": "^9.1.0",
+    "node-test-github-reporter": "^1.2.0",
     "strip-ansi": "^7.1.0"
   },
   "dependencies": {
