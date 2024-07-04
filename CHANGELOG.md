@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### Added
+- Report all configurations
+- Customize configs folder with `MENVS_FOLDER` env var
+
 ## [0.0.1] - 2023-10-18
 
 ### Added

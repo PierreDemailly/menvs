@@ -25,13 +25,14 @@ const cli = meow(`
   Usage
     $ menvs <command> <options>
 
-  Commands
-    save, s   \tSave a new configuration
-    pick, p   \tPick a configuration
-    list, l   \tList all configurations
-    delete, d \tDelete a configuration
-    show, sh  \tShow a configuration
-    update, u \tUpdate a configuration
+  Commands\tAliases
+    save\t  s\t  Save a new configuration
+    pick\t  p\t  Pick a configuration
+    list\t  l\t  List all configurations
+    delete\t  d\t  Delete a configuration
+    show\t  sh\t  Show a configuration
+    update\t  u\t  Update a configuration
+    report\t  r\t  Report (print) all configurations
 
   Examples
     $ menvs save
@@ -40,6 +41,7 @@ const cli = meow(`
     $ menvs d
     $ menvs show
     $ menvs update
+    $ menvs report
 `, {
   importMeta: import.meta,
   allowUnknownFlags: false
@@ -79,6 +81,10 @@ switch (input[0]) {
   case "update":
   case "u":
     await commandHandlers.update();
+    break;
+  case "report":
+  case "r":
+    await commandHandlers.report();
     break;
   default: {
     throw new Error("Invalid command");
