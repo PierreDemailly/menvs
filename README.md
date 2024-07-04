@@ -44,6 +44,10 @@ $ menvs pick
 - Mark variables as **confidential** when includes `password` or `secret` (case insensitive) (i.e `DATABASE_PASSWORD` or `JWT_SECRET`).
 - When updating config, allow to update all linked project `.env` files.
 
+> [!NOTE]
+> **menvs** default storage folder is `~/.menvs`.
+> You can customize this folder using `MENVS_FOLDER` env var.
+
 ## CLI
 
 | command | short | description |
@@ -54,6 +58,7 @@ $ menvs pick
 | delete | d | Delete a configuration
 | show | sh | Show configuration key-values
 | update | u | Update configuration (key / value )
+| report | r | Report all configs
 
 ## Contributors ✨
 
